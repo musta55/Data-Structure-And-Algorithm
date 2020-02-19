@@ -1,15 +1,14 @@
-#include<stdio.h>
+#include<bits/stdc++.h>
 
-int G[9][9];
-int color[9], d[9], f[9], prev[9],queue[9],front=0,rear=0,order[9];
-int time=0;
-
+using namespace std;
+int G[100][100];
+int  order[100];
+int d[100];
 int main() {
 
     int n, e, u, v,temp=0,i,count=0,t;
     printf("Enter number of nodes: ");
     scanf("%d",&n);
-    int arr[n];
     printf("Enter number of edges: ");
     scanf("%d",&e);
     for(int i=0;i<n;i++)
@@ -40,24 +39,20 @@ int main() {
     {
         if(d[u]==0)
         {
-            rear++;
-            queue[rear]=u;
+            queue.push(u);
         }
     }
 
 
     u=0;
 
-    while(front!=rear)
+    while(queue.empty())
     {
-        t=queue[front];
-        front++;
+        t=queue.pop();                   //dequeue
         count++;
-        order[u]=t;
-        u++;
+        order[u++]=t;
         if(d[t]==0)
         {
-
             for(v=0;v<n;v++)
             {
                 if(G[t][v]==1)
@@ -65,8 +60,7 @@ int main() {
                    d[v]--;
                    if(d[v]==0)
                    {
-                       rear++;
-                       queue[rear]=v;
+                       queue.push(v);     //enqueue
                    }
                 }
             }

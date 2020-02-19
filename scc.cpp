@@ -56,6 +56,7 @@ void DFS_visitScc(int u, int n,int count) {
     }
     color[u]=BLACK;
     scc[u]=count;
+    scc[u]=-1;
 
 }
 
